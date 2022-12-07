@@ -1,0 +1,27 @@
+1 Instalación DJANGO
+    -Instalacion previa de python
+    -Algunas distros de linux pueden tener django por default
+
+2 Proyecto inicial
+    -Creacion del proyecto: django-admin startproject 'nombre' //se crea una carpeta con los archivos del proyecto
+
+    La carpeta contiene:
+    *Carpeta con proyecto
+        +asgi.py
+        +__init__.py
+        +settings.py
+        +urls.py
+        +wsgi.py
+    *Archivo manage.py
+
+3 Activacion del proyecto
+    -Activacion: python manage.py migrate //activa proyecto y Bd por default (SQLite3)
+    -Server: python manage.py runserver  //ejecucion de servidor local (127.0.0.1:8000)
+
+4 Vistas
+    -Se crea un archivo views.py en carpeta del proyecto, el cual tendra las vistas en forma de funciones python
+    -Se importa la vista en archivo urls.py
+    -Se agrega elemento a lista url_patterns (urls.py)
+
+5 Plantillas
+

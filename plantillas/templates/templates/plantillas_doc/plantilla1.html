@@ -11,7 +11,21 @@
             <label>¿Quien eres?</label> <input type="text">
         </form>
         <p>
-            El nombre es: {{nombrep}} <!--uso de variable declarada en la vista-->
+            El nombre es: {{nombrep}} {{apellidop}} <!--uso de variable declarada en la vista-->
+        </p>
+        <p>
+            Fecha:{{actual}} <br> 
+            Dia:{{actual.month}} <br><!--se accede a la propiedad del objeto "actual"--> 
+            <!--NOTA: No se muestra hora correcta!!!!!-->
+            Dia:{{actual.year}} <br> 
+            Dia:{{actual.time}} <br>
+            Dia:{{actual.hour}} <br> 
+            Dia:{{actual.minute}} <br>
+            Dia:{{actual.second}} <br>
+
+            
+             
+
         </p>
 
     </body>

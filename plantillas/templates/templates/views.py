@@ -8,7 +8,7 @@ from django.template import Template, Context
 def saludo(request):#vista se declara como una funcion
     #saludo="""<html><body><h1>Hola mundito</h1></body></html>"""
 
-    nombre="Sergio" #variables
+    nombre='Sergio2' #variables
 
     doc_saludo=open("/home/eum/Documentos/Cursos/python/django/proyectos/django-learning/plantillas/templates/templates/plantillas_doc/plantilla1.html")
     
@@ -16,7 +16,7 @@ def saludo(request):#vista se declara como una funcion
     plt=Template(doc_saludo.read())#objeto de tipo template
     doc_saludo.close() #cierre del documento
     #contexto (al momento vacio ya que no hay contenido dinamico)
-    ctx=Context({"nombre_persona":nombre})
+    ctx=Context({"nombrep":nombre})
     documento=plt.render(ctx)
     return HttpResponse(documento)
 

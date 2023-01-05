@@ -17,7 +17,7 @@
             Ejemplo:
 
             <ul>
-                <li>&#123&#123<i>nombrep</i>}} = {{nombrep.upper}}</li>
+                <li>&#123&#123<i>nombrep</i>}} = {{nombrep}}</li>
                 <li>&#123&#123<i>apellidop.upper</i>}} = {{apellidop.upper}}</li>
             </ul>  <!--uso de variable declarada en la vista-->
             <!-- Se accede a metodos y propiedades con notacion . -->
@@ -30,7 +30,7 @@
             <ul>
                 <li>Fecha y hora: &#123&#123actual}}= {{actual}}</li>
                 <li>Fecha: &#123&#123actual.date}}= {{actual.date}}</li>
-                <li>Hora: &#123&#123actual.time}}= {{actual.time}}</li><!--NOTA: No se muestra hora correcta!!!!!-->
+                <li>Hora: &#123&#123actual.time}}= {{actual.time}}</li><!--FIXME: No se muestra hora correcta-->
                 <li>Año: &#123&#123actual.year}}= {{actual.year}}</li>
                 <li>Mes: &#123&#123actual.month}}= {{actual.month}}</li>
                 <li>Dia: &#123&#123actual.day}}= {{actual.day}}</li>
@@ -68,7 +68,7 @@
                 Ejemplo:<br>
                 La lista contenida en la variable equiposC, declarada en views.py sera recorrida y mostrada mediante un ciclo for.<br>
                 Si la lista esta vacia, mostrara un mensaje de advertencia.<br>
-                El contenido actual de la variable equiposC es: {{equipos}}
+                **El contenido actual de la variable equiposC es: {{equipos}}
                 <ul>
                     {% if equipos %}<!--Inicio del condicional if-->
                         {% for equipo in equipos %}<!--inicio de un blucle for dentro de plantillas(variable in identificador)-->
@@ -80,8 +80,42 @@
                     {% endif %}
                 </ul>
             </p>
-
         </p>
+    <p style="background-color: yellow;">
+       Nota: No conviene abusar de las estructuras de control en una plantilla. La filosofia de Django es mantener separada la parte logica del diseño. 
+    </p>
 
+    {% comment %}<!--Comentarios multilinea-->
+        Comentarios multilinea
+        No son renderizados por la vista 
+    {% endcomment %}
+
+    <h3>Filtros</h3>
+    <p>Los filtros procesan informacion y la transforman o modifican de alguna manera</p>
+    <p>
+        Se utiliza el simbolo | para aplicar un filtro. <br>
+        Ejemplo:<br>
+        &#123&#123<i>nombreDev.upper</i>}} = &#123&#123<i>nombreDev|upper</i>}} ==> {{nombreDev|upper}}<br>
+        <br>
+        <!--TODO:Investigar filtros-->
+        <table style="border: solid;">
+            <th>Filtros</th>
+            <tr> <td>upper</td> <td>Transforma en mayusculas</td> </tr>
+            <tr> <td>lower</td> <td>Transforma en minusculas</td> </tr>
+            <tr> <td>first</td> <td>Muestra solo la primera letra</td> </tr>
+            <tr> <td>...</td></tr>
+            
+        </table>
+
+    </p>
+
+    <div class="footer">
+        <p>Pagina creada por {{nombreDev}} {{apellidoDev}}</p>
+        {% if apellidoDev == 'Palapa' %}
+            <p>Desarrollador principal</p>
+            {% else %}
+            <p>Colaborador</p>
+        {% endif %}
+    </div>
     </body>
 </html>

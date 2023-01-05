@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
+from django.template import loader #cargador de plantillas metodo clave: loader.get_template
+
 
 
 #USO DE PLANTILLAS
@@ -13,28 +15,41 @@ def saludo(request):#vista se declara como una funcion
     #saludo="""<html><body><h1>Hola mundito</h1></body></html>"""
     
     persona1=persona("Juanelo","Alimaña") #instanciacion de clase "persona"
-
-    nombre='Sergio' #variables
+    devMaster=persona("Sergio","Palapa")
+    nombre='Sergio'
     apellido="Palapa"
     present=datetime.datetime.now() 
     temasC=["python","javascript","django"]
     #equiposC=[]
     equiposC=["gabinete","monitor","switch","regulador","impresora"]
-
     #con la nomenclatura . podemos acceder a las propiedades de los objetos
 
 
-    doc_saludo=open("/home/eum/Documentos/Cursos/python/django/proyectos/django-learning/plantillas/templates/templates/plantillas_doc/plantilla1.html")
-    
+    ####carga de plantilla de forma manual####
+    #doc_saludo=open("/home/eum/Documentos/Cursos/python/django/proyectos/django-learning/plantillas/templates/templates/plantillas_doc/plantilla1.html")
+    #plt=Template(doc_saludo.read())#objeto de tipo template
+    #doc_saludo.close() #cierre del documento
 
-    plt=Template(doc_saludo.read())#objeto de tipo template
-    doc_saludo.close() #cierre del documento
+    ####carga de plantillas optimizado####
+    doc_saludo=loader.get_template('plantilla1.html')
+    #es posible cargar mas plantillas 
+
+
     #contexto (al momento vacio ya que no hay contenido dinamico)
-
     #ctx=Context({"nombrep":nombre,"apellidop":apellido,"actual":present})
     #Es posible pasar al contexto listas
-    ctx=Context({"nombrep":persona1.nombre,"apellidop":persona1.apellido,"actual":present,"temas":temasC,"equipos":equiposC})
-    documento=plt.render(ctx)
+
+    #ctx=Context({"nombrep":persona1.nombre,"apellidop":persona1.apellido,"actual":present,"temas":temasC,"equipos":equiposC,"nombreDev":devMaster.nombre,"apellidoDev":devMaster.apellido})
+    
+
+    ####renderizado de forma manual
+    #documento=plt.render(ctx)
+
+    ####renderizado de forma optima
+    documento=doc_saludo.render({"nombrep":persona1.nombre,"apellidop":persona1.apellido,"actual":present,"temas":temasC,"equipos":equiposC,"nombreDev":devMaster.nombre,"apellidoDev":devMaster.apellido}) #metodo render es diferente, noa cepta contexto sino un diccionario
+
+
+
     return HttpResponse(documento)
 
 

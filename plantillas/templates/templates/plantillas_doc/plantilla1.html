@@ -1,30 +1,85 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Template1</title>
+        <title>Plantillas</title>
     </head>
     <body>
         <h1 style="color:green">Django</h1>
         <h2 style="color:brown">Plantillas</h2>
-        <p>Una plantilla es una cadena de texto que Django lee e interpreta el contenido para arrojarlo como una vista</p>
-        <form>
-            <label>¿Quien eres?</label> <input type="text">
-        </form>
         <p>
-            El nombre es: {{nombrep}} {{apellidop}} <!--uso de variable declarada en la vista-->
+            Una plantilla es una cadena de texto que Django lee e interpreta el contenido para arrojarlo como una vista
         </p>
-        <p>
-            Fecha:{{actual}} <br> 
-            Dia:{{actual.month}} <br><!--se accede a la propiedad del objeto "actual"--> 
-            <!--NOTA: No se muestra hora correcta!!!!!-->
-            Dia:{{actual.year}} <br> 
-            Dia:{{actual.time}} <br>
-            Dia:{{actual.hour}} <br> 
-            Dia:{{actual.minute}} <br>
-            Dia:{{actual.second}} <br>
 
-            
-             
+        <p>
+            Es posible utilizar <strong>variables</strong> en una plantilla.<br>
+            Se enmarcan en &#123&#123<i>variable</i>}}<br>
+            Nota: Una variable es declarada en la vista (funcion en views.py)<br>
+            Ejemplo:
+
+            <ul>
+                <li>&#123&#123<i>nombrep</i>}} = {{nombrep.upper}}</li>
+                <li>&#123&#123<i>apellidop.upper</i>}} = {{apellidop.upper}}</li>
+            </ul>  <!--uso de variable declarada en la vista-->
+            <!-- Se accede a metodos y propiedades con notacion . -->
+        </p>
+        <h3>Metodos</h3>
+        <p>
+            Una plantilla admite tambien <strong>metodos</strong><br>
+            Ejemplo:<br>
+            Utilizando los metodos de <i>datetime</i><br>
+            <ul>
+                <li>Fecha y hora: &#123&#123actual}}= {{actual}}</li>
+                <li>Fecha: &#123&#123actual.date}}= {{actual.date}}</li>
+                <li>Hora: &#123&#123actual.time}}= {{actual.time}}</li><!--NOTA: No se muestra hora correcta!!!!!-->
+                <li>Año: &#123&#123actual.year}}= {{actual.year}}</li>
+                <li>Mes: &#123&#123actual.month}}= {{actual.month}}</li>
+                <li>Dia: &#123&#123actual.day}}= {{actual.day}}</li>
+                <li>Hora: &#123&#123actual.hour}}= {{actual.hour}}</li>
+                <li>Minutos: &#123&#123actual.minute}}= {{actual.minute}}</li>
+                <li>Segundos: &#123&#123actual.second}}= {{actual.second}}</li>  
+            </ul>
+    
+        </p>
+
+        <h3>Jerarquia y estructuras de control</h3>
+        <p>
+            En las llamadas en plantillas existe una jerarquia u orden interno:
+            <ol>
+                <li>Diccionario</li>
+                <li>Atributo</li>
+                <li>Metodo</li>
+                <li>Indice de lista</li>
+            </ol>
+
+            Ejemplo de acceso a una lista: <br>
+            Llamado de una lista &#123{temas}} = {{temas}} <!--Manda a llamar la lista completa-->
+            <br>
+            <br>
+            Llamado por indices:<br>
+            Elemento 0 &#123{temas.0}} = {{temas.0}}<br><!--Llamar el primer indice de la lista-->
+            Elemento 1 &#123{temas.1}} = {{temas.1}}<br>
+            Elemento 2 &#123{temas.2}} = {{temas.2}}<br>
+
+            <p>
+                Llamado mediante <strong>estructuras de control</strong><br>
+                Una lista puede recorrerse utilizando un ciclo <strong>for</strong> mediante &#123% for <i>item</i> in <i>lista</i> %}instrucciones &#123% endfor %}.<br>
+                O controlarse mediante el condicional <strong>if</strong> mediante &#123% if <i>condicion</i> %}instrucciones &#123% endif %}.<br><br>
+
+                Ejemplo:<br>
+                La lista contenida en la variable equiposC, declarada en views.py sera recorrida y mostrada mediante un ciclo for.<br>
+                Si la lista esta vacia, mostrara un mensaje de advertencia.<br>
+                El contenido actual de la variable equiposC es: {{equipos}}
+                <ul>
+                    {% if equipos %}<!--Inicio del condicional if-->
+                        {% for equipo in equipos %}<!--inicio de un blucle for dentro de plantillas(variable in identificador)-->
+                            <li>{{equipo}}</li>
+                        {% endfor %}
+                    
+                    {% else %}
+                        <p>Nada que mostrar!</p>
+                    {% endif %}
+                </ul>
+            </p>
 
         </p>
 

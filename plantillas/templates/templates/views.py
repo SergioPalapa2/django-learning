@@ -17,12 +17,11 @@ def saludo(request):#vista se declara como una funcion
     nombre='Sergio' #variables
     apellido="Palapa"
     present=datetime.datetime.now() 
-    
-    
-
+    temasC=["python","javascript","django"]
+    #equiposC=[]
+    equiposC=["gabinete","monitor","switch","regulador","impresora"]
 
     #con la nomenclatura . podemos acceder a las propiedades de los objetos
-
 
 
     doc_saludo=open("/home/eum/Documentos/Cursos/python/django/proyectos/django-learning/plantillas/templates/templates/plantillas_doc/plantilla1.html")
@@ -31,8 +30,10 @@ def saludo(request):#vista se declara como una funcion
     plt=Template(doc_saludo.read())#objeto de tipo template
     doc_saludo.close() #cierre del documento
     #contexto (al momento vacio ya que no hay contenido dinamico)
+
     #ctx=Context({"nombrep":nombre,"apellidop":apellido,"actual":present})
-    ctx=Context({"nombrep":persona1.nombre,"apellidop":persona1.apellido,"actual":present})
+    #Es posible pasar al contexto listas
+    ctx=Context({"nombrep":persona1.nombre,"apellidop":persona1.apellido,"actual":present,"temas":temasC,"equipos":equiposC})
     documento=plt.render(ctx)
     return HttpResponse(documento)
 

@@ -16,10 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from templates.views import saludo
+from templates.views import short
+from templates.views import herencia_ex
+from templates.views import herencia_ex2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludo/', saludo)
+    path('saludo/', saludo),
+    path('short/', short),
+    path('herencia/', herencia_ex),
+    path('herencia2/', herencia_ex2)
 ]
 
 

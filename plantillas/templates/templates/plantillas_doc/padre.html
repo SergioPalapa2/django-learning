@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title> <!--Contenido que puede cambiar-->
+</head>
+<body>
+    <!--Una plantilla base contiene elementos en comun en todo el sitio web-->
+    <h1 style="background-color: grey; color: azure; text-align: center;">Plantilla base</h1>
+    <p>Esta plantilla base esta heredando elementos en comun</p>
+
+    {% block content %} <!--Bloques cambiantes--> 
+    {% endblock %}
+
+    <p style="background-color: grey; color: azure; text-align: right;">Contacto|About us|Politicas</p>
+</body>
+</html>

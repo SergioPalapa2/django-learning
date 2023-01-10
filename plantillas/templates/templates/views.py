@@ -3,6 +3,8 @@ import datetime
 from django.template import Template, Context
 from django.template import loader #cargador de plantillas metodo clave: loader.get_template
 
+from django.shortcuts import render
+
 
 
 #USO DE PLANTILLAS
@@ -48,9 +50,22 @@ def saludo(request):#vista se declara como una funcion
     ####renderizado de forma optima
     documento=doc_saludo.render({"nombrep":persona1.nombre,"apellidop":persona1.apellido,"actual":present,"temas":temasC,"equipos":equiposC,"nombreDev":devMaster.nombre,"apellidoDev":devMaster.apellido}) #metodo render es diferente, noa cepta contexto sino un diccionario
 
-
-
     return HttpResponse(documento)
+
+
+def short(request):
+    autor=persona('Sergio','Palapa')
+    return render(request,"plantilla2.html") 
+
+
+#Vistas heredadas
+def herencia_ex(request):
+    fecha_actual=datetime.datetime.now()
+    return render(request, "hija.html",{"dameFecha":fecha_actual})
+
+
+def herencia_ex2(request):
+    return render(request, "hija2.html")
 
 
 #Uso de variables, objetos y propiedades en plantillas

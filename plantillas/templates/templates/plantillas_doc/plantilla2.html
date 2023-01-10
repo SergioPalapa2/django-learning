@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantillas-Shortcuts</title>
+</head>
+<body>
+    {% include "header.html" %} <!--plantilla incrustada-->
+    <h1 style="color:green">Django</h1>
+    <h2 style="color:brown">Plantillas</h2>
+    <h3>Shortcuts</h3>
+    <p>La libreria shortcuts recolecta funciones de ayuda y clases que se implementan en distintos niveles de nuestra aplicacion MVC</p>
+    <p>Fuente: <a href="https://docs.djangoproject.com/en/4.1/topics/http/shortcuts/#optional-arguments">Django shortcuts</a></p>
+    <ol>
+        <li>Importamos la libreria en nuestro archivo views: <strong>from django.shortcuts import render</strong></li>
+        <li>Utilizamos la siguiente linea al final de nuestra funcion: <strong>return render(request,"plantilla2.html")</strong></li>
+    </ol>
+    
+    <h3>Plantillas incrustadas</h3>
+    Documentos html que se utilizan dentro de otro documento html.<br>
+    En Django se pueden visualizar como una <strong>plantilla principal</strong> que contiene otra plantilla.<br>
+
+    Pasos para incrustar plantillas:<br>
+    <ol>
+        <li>Crear una nueva plantilla</li>
+        <li>Determinar el lugar en donde va a aparecer la plantilla dentro de la plantilla principal</li>
+        <li>Se incrusta plantilla mediante: &#123% include "<i>plantilla.html</i>" %}</li>
+    </ol>
+    <p>Es habitual crear dentro de nuestra carpeta plantillas subcarpetas que organicen las plantillas.</p>
+    <p style="background-color: yellow;">Nota: Es importante incluir la ruta de la subcarpeta en el include </p>
+
+    <h3>Herencia de plantillas</h3>
+    <p>
+        Consiste en crar una <strong>plantilla padre</strong> sobre la cual se van a basar el resto de plantillas en el sitio web.<br>
+        Se crea una estructura general que se mantendra en todo el sitio web y tendra uno o varios <strong>bloques cambiantes</strong>.<br>
+        Para heredar se utiliza: &#123% extends "<i>padre.html</i>" %}<br>
+        Las etiquetas se deben colocar siempre al inicio de las plantillas hijas.<br>
+        Pasos para heredar de plantillas:
+        <ol>
+            <li>Se crea la plantilla padre en carpeta de plantillas</li>
+            <li>Se colocan los bloques cambiantes</li>
+                <ul>
+                    <li>&#123% block title %} &#123% endblock %}</li>
+                    <li>&#123% block content %} &#123% endblock %}</li>
+                </ul>
+            <li>Se crean las plantillas hijas utilizando &#123% extends "padre.html" %}</li>
+            <li>En la plantilla hija se indican los bloques que van a cambiar mediante los bloques {}</li>
+            <li>Crear una nueva vista en archivo views.py, apuntando a plantilla hija (render(request,"hija.html",... )</li>
+            <li>Se registra la URL</li>
+            
+        </ol>
+
+
+
+    </p>
+</body>
+</html>
